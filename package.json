@@ -1,0 +1,26 @@
+{
+  "name": "node-movie-api",
+  "version": "1.0.0",
+  "description": "creating an api to retrieve trailer & description of movie title on url request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilK15/node-movie-api.git"
+  },
+  "author": "Emil Kais",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmilK15/node-movie-api/issues"
+  },
+  "homepage": "https://github.com/EmilK15/node-movie-api#readme",
+  "dependencies": {
+    "compression": "^1.7.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "redis": "^2.8.0"
+  }
+}
