@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Imdb } from '../presentation/';
 
 class Landingpage extends Component {
   constructor(props) {
@@ -7,25 +8,32 @@ class Landingpage extends Component {
 
     this.state = {
       url : '',
-      err: ''
+      err: '',
+      imdb: []
     };
   }
 
   urlChange(e) {
     this.setState({
-      url: e
+      url: e.target.value
     });
   }
 
   handleQuery(e) {
     e.preventDefault();
-
-    axios.post('/:' + this.state.url)
-      .catch((err) => {
+    axios.post('/api/movie', {
+      url: this.state.url
+    })
+    .then((info) => {
+      this.setState({
+        imdb: info.data
+      });
+    })
+    .catch((err) => {
         this.setState({
           err
         });
-      });
+    });
   }
 
   render() {
@@ -39,10 +47,12 @@ class Landingpage extends Component {
     			</div>
     		</nav>
         <form className="query-form" onSubmit={(e)=>this.handleQuery(e)} >
-          <input className="input query-input" type="text" placeholder="URL" required
+          <input className="input query-input" id="url" name="url" type="text" placeholder="URL" required
             onChange={(e)=>this.urlChange(e)} />
             <button className="btn btn-default" type="submit">Search</button>
         </form>
+        <Imdb rating={this.state.imdb.rating} votes={this.state.imdb.votes}
+          url={this.state.imdb.url}/>
       </div>
     )
   }

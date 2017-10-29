@@ -5,7 +5,7 @@ var express = require('express');
 var apiRoutes = express.Router();
 var app = express();
 
-var controllers = require('./controllers/');
+var controller = require('./controllers/');
 
 app.use('/api', apiRoutes);
 
@@ -20,9 +20,8 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-apiRoutes.route('/:url')
-	.get(controllers.descriptionController.read_movie);
-
+apiRoutes.route('/movie')
+	.post(controller.descriptionController.read_movie);
 
 app.use(function(req, res) {
     res.status(404).redirect('/');
