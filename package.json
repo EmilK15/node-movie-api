@@ -17,10 +17,14 @@
   },
   "homepage": "https://github.com/EmilK15/node-movie-api#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "co-supertest": "0.0.10",
     "compression": "^1.7.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "helmet": "^3.9.0",
     "mocha": "^4.0.1",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "supertest": "^3.0.0"
   }
 }
