@@ -19,8 +19,11 @@ app.all('/*', function(req, res, next) {
 app.get('/', function(req, res) {
   res.render('index');
 });
-
-
+/*
+apiRoutes.route('/:url')
+	.get(controller.descriptionController.read_movie)
+	.post(controller.descriptionController.add_movie)
+*/
 
 app.use(function(req, res) {
     res.status(404).redirect('/');
