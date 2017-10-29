@@ -19,7 +19,6 @@
   "dependencies": {
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
-    "co-supertest": "0.0.10",
     "compression": "^1.7.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
@@ -29,7 +28,6 @@
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
     "redis": "^2.8.0",
-    "supertest": "^3.0.0",
     "webpack": "^3.8.1"
   },
   "devDependencies": {

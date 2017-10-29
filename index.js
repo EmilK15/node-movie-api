@@ -25,3 +25,7 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 server.listen(port);
+
+exports.closeServer = function() {
+  server.close();
+};
