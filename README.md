@@ -44,6 +44,8 @@ I decided against it because there would be alot of parsing of strings on the ba
 Though if you use hset/hget you can leverage the hsetex where only the most frequent titles will be cached rather than ones that aren't queried very often.
 4) The components are located in the app/components portion where axios was used to send client requests. I stuck with a SPA because there wasn't a need for another endpoint to redirect users. 
 5) The container folder is for "smart" components that have their own state, while the presentation folder is for the "dumb" components that are conditionally rendered when props are passed to them from the parent component.
+NOTE:
+I returned the first trailer since I figured the user didn't want a list of them. However this solution is easily extendable to include all the trailer videos by passing each of the video urls to respective Trailer Components.
 
 ## Testing
 1) For the most part I had to do some research on Mocha so I left that for the last part even though it should have been done first.
@@ -56,4 +58,5 @@ mocha test
 2) Perhaps using multiple copies of the node server using different redis caches? Though I haven't research enough into redis to know for sure the full benefits of this versus other methods.
 3) Perhaps the use of Jest for front-end testing of React components (though the components were relatively simple and most of them were "dummy" components)
 4) Building up the API so that it does deal with POST,PUT, DELETE requests.
+
 
