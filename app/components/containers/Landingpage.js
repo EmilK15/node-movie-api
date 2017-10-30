@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Imdb } from '../presentation/';
+import { Imdb, Error } from '../presentation/';
 
 class Landingpage extends Component {
   constructor(props) {
@@ -31,15 +31,19 @@ class Landingpage extends Component {
       });
     })
     .then(() => {
-      axios.post('/api/trailer', {
-        movieId: this.state.imdb.id
-      })
-    })
-    .then((source) => {
-      console.log(source);
-      this.setState({
-        youtubeCode: source.data
-      });
+        axios.post('/api/trailer', {
+          movieId: this.state.imdb.id
+        })
+        .then((source) => {
+          this.setState({
+            youtubeCode: source.data
+          });
+        })
+        .catch((err) => {
+          this.setState({
+            err
+          });
+        });
     })
     .catch((err) => {
         this.setState({
@@ -58,6 +62,7 @@ class Landingpage extends Component {
     				</div>
     			</div>
     		</nav>
+        <Error error={this.state.err} />
         <form className="query-form" onSubmit={(e)=>this.handleQuery(e)} >
           <input className="input query-input" id="url" name="url" type="text" placeholder="URL" required
             onChange={(e)=>this.urlChange(e)} />

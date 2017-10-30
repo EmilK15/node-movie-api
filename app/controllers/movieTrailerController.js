@@ -14,7 +14,7 @@ exports.get_movie = function(req, res) {
       res.json(imdb);
     })
     .catch((err) => {
-      res.json({ err });
+      res.json({ err: err.message });
     });
 };
 //this is the underlying url link to get the trailer
@@ -23,10 +23,9 @@ exports.get_trailer = function(req, res) {
   axios.get(trailerUrl)
     .then((data) => {
       let youtubeSource = data.data["youtube"][0].source;
-      console.log(youtubeSource);
       res.json(youtubeSource);
     })
     .catch((err) => {
-      res.json({err})
+      res.json({err: err.message })
     });
 };
