@@ -47,7 +47,10 @@ Though if you use hset/hget you can leverage the hsetex where only the most freq
 
 ## Testing
 1) For the most part I had to do some research on Mocha so I left that for the last part even though it should have been done first.
-
+2) For the tests run: and the main file is within the /test folder.
+```
+mocha test
+```
 ## Next steps
 1) First there is always the use of nginx to serve static content. For this I have a very minimal amount of css so using nginx on that didn't seem necessary.
 2) Perhaps using multiple copies of the node server using different redis caches? Though I haven't research enough into redis to know for sure the full benefits of this versus other methods.
