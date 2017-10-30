@@ -8,7 +8,7 @@ practice repo to get api key for TMDb
 npm install
 ```
 2) Look at app/config/config.js to change to your own apiKey for moviedb.
-3) Make sure to have redis installed. You can find a.zip here: https://redis.io/download .
+3) Make sure to have redis installed. You can find a .zip here: https://redis.io/download . For Windows this is where I setup my version of redis https://github.com/dmajkic/redis/downloads .
 4) Make sure redis is on your PATH variable if you are using Windows. Type:
 ```
 redis-server
@@ -17,7 +17,7 @@ redis-server
 
 6) Make sure you run node in prodution mode: Run this command or something similar
 ```
-NODE_ENV=production node myapp/app.js
+NODE_ENV=production node index.js
 ```
 7) Open a new terminal and type:
 ```
