@@ -45,9 +45,12 @@ Though if you use hset/hget you can leverage the hsetex where only the most freq
 4) The components are located in the app/components portion where axios was used to send client requests. I stuck with a SPA because there wasn't a need for another endpoint to redirect users. 
 5) The container folder is for "smart" components that have their own state, while the presentation folder is for the "dumb" components that are conditionally rendered when props are passed to them from the parent component.
 
+## Testing
+1) For the most part I had to do some research on Mocha so I left that for the last part even though it should have been done first.
+
 ## Next steps
 1) First there is always the use of nginx to serve static content. For this I have a very minimal amount of css so using nginx on that didn't seem necessary.
-2) I stuck with the redis cache system so that if you were to use multiple processes/replicas of the same node server they can each have their own cache without the need for worrying about syncing caches with each server.
+2) Perhaps using multiple copies of the node server using different redis caches? Though I haven't research enough into redis to know for sure the full benefits of this versus other methods.
 3) Perhaps the use of Jest for front-end testing of React components (though the components were relatively simple and most of them were "dummy" components)
 4) Building up the API so that it does deal with POST,PUT, DELETE requests.
 
