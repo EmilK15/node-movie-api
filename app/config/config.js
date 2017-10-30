@@ -1,0 +1,4 @@
+module.exports = {
+  moviedbApiKey: "a52fd326ce4304e45ee5ad9b32f89c5c",
+  moviedbReadToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTJmZDMyNmNlNDMwNGU0NWVlNWFkOWIzMmY4OWM1YyIsInN1YiI6IjU5ZjRkZjA4YzNhMzY4MWZkZDAxOGU2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DW3gcR3dFl4grcgv61OUeWam1kZTEibIcxjtkrKRGJM"
+}

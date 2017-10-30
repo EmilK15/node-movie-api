@@ -9,7 +9,8 @@ class Landingpage extends Component {
     this.state = {
       url : '',
       err: '',
-      imdb: []
+      imdb: [],
+      youtubeCode: ''
     };
   }
 
@@ -27,6 +28,17 @@ class Landingpage extends Component {
     .then((info) => {
       this.setState({
         imdb: info.data
+      });
+    })
+    .then(() => {
+      axios.post('/api/trailer', {
+        movieId: this.state.imdb.id
+      })
+    })
+    .then((source) => {
+      console.log(source);
+      this.setState({
+        youtubeCode: source.data
       });
     })
     .catch((err) => {
