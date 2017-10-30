@@ -34,14 +34,14 @@ if you want to edit the React Components
 2) The routes.js just off of the app/ folder is doing the routing using a controller located in the app/controller folder where it is meant to be extended for other methods such as put/create/delete. 
 I didn't use anything other than get because you are leveraging information mostly from other api's for this use case.
 3) The movieTrailerController has one main method where it is sending the api request based off of the url.
-If the url has data already in the redis cache, then it will return that to the user instead.
-If there is no matching url then nothing new will render on the front-end. 
-If there is data, then it will use the imdb id as a foreign key to get the youtube key.
-NOTE: This is a nuance of the data, so if there is a movie that doesn't have an imdb key, then it won't find the trailerUrl and nothing will render from that.
-From there before returning the data, it will add the new key into the redis cache using hmset.
-In order to benefit from the cache, the trade-off here is that using hmset/hgetall you can use the JSON data, this will only work because the data is one level-deep. Otherwise you can use a hget/hset and appending all the values into strings.
-I decided against it because there would be alot of parsing of strings on the back-end before returning any data to the user.
-Though if you use hset/hget you can leverage the hsetex where only the most frequent titles will be cached rather than ones that aren't queried very often.
+If the url has data already in the redis cache, then it will return that to the user instead. </br>
+If there is no matching url then nothing new will render on the front-end. </br>
+If there is data, then it will use the imdb id as a foreign key to get the youtube key. </br>
+NOTE: This is a nuance of the data, so if there is a movie that doesn't have an imdb key, then it won't find the trailerUrl and nothing will render from that. </br>
+From there before returning the data, it will add the new key into the redis cache using hmset. </br>
+In order to benefit from the cache, the trade-off here is that using hmset/hgetall you can use the JSON data, this will only work because the data is one level-deep. Otherwise you can use a hget/hset and appending all the values into strings. </br>
+I decided against it because there would be alot of parsing of strings on the back-end before returning any data to the user. </br>
+Though if you use hset/hget you can leverage the hsetex where only the most frequent titles will be cached rather than ones that aren't queried very often. </br>
 4) The components are located in the app/components portion where axios was used to send client requests. I stuck with a SPA because there wasn't a need for another endpoint to redirect users. 
 5) The container folder is for "smart" components that have their own state, while the presentation folder is for the "dumb" components that are conditionally rendered when props are passed to them from the parent component.
 NOTE:
