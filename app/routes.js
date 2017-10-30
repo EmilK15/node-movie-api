@@ -23,9 +23,6 @@ app.get('/', function(req, res) {
 apiRoutes.route('/movie')
   .post(controller.movieTrailerController.get_movie);
 
-apiRoutes.route('/trailer')
-  .post(controller.movieTrailerController.get_trailer);
-
 app.use(function(req, res) {
     res.status(404).redirect('/');
 });

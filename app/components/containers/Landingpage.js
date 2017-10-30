@@ -9,8 +9,7 @@ class Landingpage extends Component {
     this.state = {
       url : '',
       err: '',
-      imdb: [],
-      youtubeCode: ''
+      imdb: []
     };
   }
 
@@ -29,21 +28,6 @@ class Landingpage extends Component {
       this.setState({
         imdb: info.data
       });
-    })
-    .then(() => {
-        axios.post('/api/trailer', {
-          movieId: this.state.imdb.id
-        })
-        .then((source) => {
-          this.setState({
-            youtubeCode: "https://www.youtube.com/embed/" + source.data
-          });
-        })
-        .catch((err) => {
-          this.setState({
-            err
-          });
-        });
     })
     .catch((err) => {
         this.setState({
@@ -69,7 +53,7 @@ class Landingpage extends Component {
             <button className="btn btn-default" type="submit">Search</button>
         </form>
         <div className="container">
-          <Trailer youtubeCode={this.state.youtubeCode} />
+          <Trailer youtubeCode={this.state.imdb.youtubeSource} />
         </div>
         <Imdb votes={this.state.imdb.votes} rating={this.state.imdb.rating} url={this.state.imdb.url}/>
       </div>
