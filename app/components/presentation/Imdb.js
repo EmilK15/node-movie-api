@@ -5,8 +5,9 @@ class Imdb extends Component {
     return (
       this.props.url ?
         <div className="movie-info container">
-          <p>{this.props.rating} out of 10</p>
-          <p>{this.props.votes}</p>
+          <b>Rating</b><p>{this.props.rating} out of 10</p>
+          <p>{this.props.votes.split(" ")[0]} <span className="glyphicon glyphicon-thumbs-up"></span></p>
+          <p>{this.props.votes.split(" ")[1]} <span className="glyphicon glyphicon-thumbs-down"></span></p>
           <a href={this.props.url}>Link to imdb</a>
         </div>
       : null

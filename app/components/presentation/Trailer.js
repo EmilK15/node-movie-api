@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component }from 'react';
 
-export default () => {
-  return (
-    this.props.trailer ?
-      <div className="movie-trailer container">
-        <p>{this.props.trailer}</p>
-      </div>
-    : null
-  )
+class Trailer extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      this.props.youtubeCode ?
+        <iframe className="movie-trailer" src={this.props.youtubeCode}>
+        </iframe>
+      : null
+    )
+  }
 }
+export default Trailer;

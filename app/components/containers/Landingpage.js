@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Imdb, Error } from '../presentation/';
+import { Imdb, Error, Trailer } from '../presentation/';
 
 class Landingpage extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Landingpage extends Component {
         })
         .then((source) => {
           this.setState({
-            youtubeCode: source.data
+            youtubeCode: "https://www.youtube.com/embed/" + source.data
           });
         })
         .catch((err) => {
@@ -68,8 +68,10 @@ class Landingpage extends Component {
             onChange={(e)=>this.urlChange(e)} />
             <button className="btn btn-default" type="submit">Search</button>
         </form>
-        <Imdb rating={this.state.imdb.rating} votes={this.state.imdb.votes}
-          url={this.state.imdb.url}/>
+        <div className="container">
+          <Trailer youtubeCode={this.state.youtubeCode} />
+        </div>
+        <Imdb votes={this.state.imdb.votes} rating={this.state.imdb.rating} url={this.state.imdb.url}/>
       </div>
     )
   }
