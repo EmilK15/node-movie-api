@@ -25,9 +25,19 @@ class Landingpage extends Component {
       url: this.state.url
     })
     .then((info) => {
-      this.setState({
-        imdb: info.data
-      });
+      if(info.data.err)
+        this.setState({
+          err: info.data.err + '. Please try again with a valid url.'
+        });
+      else {
+        //reset state to empty on current request
+        this.setState({
+          err: ''
+        });
+        this.setState({
+          imdb: info.data
+        });
+      }
     })
     .catch((err) => {
         this.setState({

@@ -36,4 +36,16 @@ describe("query page", function() {
 
   });
 
+  describe("get wrong /api/movie", function() {
+    let movieUrl = "https://content.viaplay.se/pc-se/film/sing-2015";
+    let errMsg = "Request failed with status code 404";
+    it("Wrong movieUrl request", function() {
+      request.post(base_url + '/api/movie', function(err, res) {
+        assert.equal(errMsg, res.err);
+        server.closeServer();
+        done();
+      })
+    });
+  });
+
 });
