@@ -9,7 +9,10 @@ class Landingpage extends Component {
     this.state = {
       url : '',
       err: '',
-      imdb: []
+      votes: '',
+      rating: '',
+      imdbUrl: '',
+      youtubeSource: ''
     };
   }
 
@@ -34,8 +37,12 @@ class Landingpage extends Component {
         this.setState({
           err: ''
         });
+        let parsedInfo = info.data.split(" ");
         this.setState({
-          imdb: info.data
+          votes: parsedInfo[0] + " " + parsedInfo[1],
+          rating: parsedInfo[2],
+          imdbUrl: parsedInfo[3],
+          youtubeSource: parsedInfo[4]
         });
       }
     })
@@ -63,9 +70,9 @@ class Landingpage extends Component {
             <button className="btn btn-default" type="submit">Search</button>
         </form>
         <div className="container">
-          <Trailer youtubeCode={this.state.imdb.youtubeSource} />
+          <Trailer youtubeCode={this.state.youtubeSource} />
         </div>
-        <Imdb votes={this.state.imdb.votes} rating={this.state.imdb.rating} url={this.state.imdb.url}/>
+        <Imdb votes={this.state.votes} rating={this.state.rating} url={this.state.imdbUrl}/>
       </div>
     )
   }

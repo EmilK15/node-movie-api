@@ -21,15 +21,15 @@ exports.get_movie = function(req, res) {
       axios.get(req.body.url)
         .then((data) => {
           let imdb = data.data._embedded["viaplay:blocks"][0]._embedded["viaplay:product"].content.imdb;
-          let title = data.data._embedded["viaplay:blocks"][0]._embedded["viaplay:product"].publicPath;
-          imdb.title = title;
           let trailerUrl = 'http://api.themoviedb.org/3/movie/' + imdb.id + '/trailers?api_key=' + key;
           axios.get(trailerUrl)
             .then((data)=> {
                 let youtubeSource = data.data["youtube"][0].source;
                 imdb.youtubeSource = "https://www.youtube.com/embed/" + youtubeSource;
-                client.hmset(req.body.url, imdb);
-                res.json(imdb);
+                let imdbString = imdb.votes + " " + imdb.rating + " " + imdb.url + " " + imdb.youtubeSource;
+                //this key will be valid for 24 hours, in this way the values will be in sync < 1 day of the change of data
+                client.setex(req.body.url, 86400, imdbString);
+                res.json(imdbString);
             })
             .catch((err) => {
               res.json({err: err.message });
