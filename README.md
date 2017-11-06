@@ -40,8 +40,9 @@ If there is data, then it will use the imdb id as a foreign key to get the youtu
 NOTE: This is a nuance of the data, so if there is a movie that doesn't have an imdb key, then it won't find the trailerUrl and nothing will render from that. </br>
 From there before returning the data, it will add the new key into the redis cache using hmset. </br>
 In order to benefit from the cache, the trade-off here is that using hmset/hgetall you can use the JSON data, this will only work because the data is one level-deep. Otherwise you can use a hget/hset and appending all the values into strings. </br>
-I decided against it because there would be alot of parsing of strings on the back-end before returning any data to the user. </br>
-Though if you use hset/hget you can leverage the hsetex where only the most frequent titles will be cached rather than ones that aren't queried very often. </br>
+UPDATE:
+I changed the method to hgetall/hsetex with the expiry of one day so that the data will be up to date within one day from
+the imdb info stored in the viaplay api(if it changes).
 4) The components are located in the app/components portion where axios was used to send client requests. I stuck with a SPA because there wasn't a need for another endpoint to redirect users. 
 5) The container folder is for "smart" components that have their own state, while the presentation folder is for the "dumb" components that are conditionally rendered when props are passed to them from the parent component.
 NOTE:
