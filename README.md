@@ -31,7 +31,7 @@ if you want to edit the React Components
 
 ## How it works
 1) The setup is mostly done in the main index.js file notably using compression to get a little extra information sent to the client.
-2) The routes.js just off of the app/ folder is doing the routing using a controller located in the app/controller folder where it is meant to be extended for other methods such as put/create/delete. 
+2) The routes.js just off of the app/ folder is doing the routing using a controller located in the app/controller folder where it is meant to be extended for other methods such as put/create/delete.
 I didn't use anything other than get because you are leveraging information mostly from other api's for this use case.
 3) The movieTrailerController has one main method where it is sending the api request based off of the url.
 If the url has data already in the redis cache, then it will return that to the user instead. </br>
@@ -40,9 +40,10 @@ If there is data, then it will use the imdb id as a foreign key to get the youtu
 NOTE: This is a nuance of the data, so if there is a movie that doesn't have an imdb key, then it won't find the trailerUrl and nothing will render from that. </br>
 From there before returning the data, it will add the new key into the redis cache using hmset. </br>
 In order to benefit from the cache, the trade-off here is that using hmset/hgetall you can use the JSON data, this will only work because the data is one level-deep. Otherwise you can use a hget/hset and appending all the values into strings. </br>
-I decided against it because there would be alot of parsing of strings on the back-end before returning any data to the user. </br>
-Though if you use hset/hget you can leverage the hsetex where only the most frequent titles will be cached rather than ones that aren't queried very often. </br>
-4) The components are located in the app/components portion where axios was used to send client requests. I stuck with a SPA because there wasn't a need for another endpoint to redirect users. 
+UPDATE:
+I changed the method to hget/hsetex with the expiry of one day so that the data will be up to date within one day from
+the imdb info stored in the viaplay api(if it changes).
+4) The components are located in the app/components portion where axios was used to send client requests. I stuck with a SPA because there wasn't a need for another endpoint to redirect users.
 5) The container folder is for "smart" components that have their own state, while the presentation folder is for the "dumb" components that are conditionally rendered when props are passed to them from the parent component.
 NOTE:
 I returned the first trailer since I figured the user didn't want a list of them. However this solution is easily extendable to include all the trailer videos by passing each of the video urls to respective Trailer Components.
@@ -58,5 +59,3 @@ mocha test
 2) Perhaps using multiple copies of the node server using different redis caches? Though I haven't research enough into redis to know for sure the full benefits of this versus other methods.
 3) Perhaps the use of Jest for front-end testing of React components (though the components were relatively simple and most of them were "dummy" components)
 4) Building up the API so that it does deal with POST,PUT, DELETE requests.
-
-
