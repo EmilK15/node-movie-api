@@ -14,7 +14,7 @@ client.on('error', function(err) {
 //going to make the api request to moviedb's api and get the information
 // before returning it to the react component
 exports.get_movie = function(req, res) {
-  client.hgetall(req.body.url, function(err, result) {
+  client.hget(req.body.url, function(err, result) {
     if(result)
       res.json(result);
     else {
